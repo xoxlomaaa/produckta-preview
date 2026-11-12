@@ -47,6 +47,7 @@
     --section-description-leading: 1.65;
     --section-description-gap: 1rem;
     --radius: 1.1rem;
+    --site-header-height: 5.5rem;
     font-family: Manrope, "Segoe UI", Arial, sans-serif;
     color: var(--ink);
     background: var(--paper);
@@ -56,6 +57,7 @@
   *, *::before, *::after { box-sizing: border-box; }
   body, h1, h2, h3, p { margin: 0; }
   body { position: relative; isolation: isolate; }
+  html { scroll-padding-block-start: var(--site-header-height); }
   h1, h2, h3 { line-height: 1.13; letter-spacing: -.04em; }
   h1, h2 { font-weight: 800; }
   h2 { font-size: var(--section-title-size); text-wrap: balance; }
@@ -83,7 +85,7 @@
   .control-icon { display: block; width: var(--control-icon-size); height: var(--control-icon-size); inline-size: var(--control-icon-size); block-size: var(--control-icon-size); flex: none; fill: none; stroke: currentColor; stroke-width: var(--control-stroke); stroke-linecap: round; stroke-linejoin: round; }
   .ui-arrow use { transition: transform var(--control-duration) var(--control-ease); }
   .ui-arrow--back { transform: rotate(180deg); }
-  .skip { position: fixed; z-index: 20; inset: .75rem auto auto .75rem; transform: translateY(-160%); color: var(--paper); background: var(--ink); padding: .8rem 1rem; border-radius: .4rem; }
+  .skip { position: fixed; z-index: 60; inset: .75rem auto auto .75rem; transform: translateY(-160%); color: var(--paper); background: var(--ink); padding: .8rem 1rem; border-radius: .4rem; }
   .skip:focus { transform: translateY(0); }
 }
 @layer layout {
@@ -157,6 +159,8 @@
   .button .icon { inline-size: var(--control-icon-size); block-size: var(--control-icon-size); }
   .button:disabled { cursor: not-allowed; opacity: .65; }
   .button:not(:disabled):active { opacity: .88; }
+  .site-header-wrap { position: sticky; inset-block-start: 0; z-index: 30; isolation: isolate; padding-block-start: env(safe-area-inset-top, 0px); background: var(--paper); transition: box-shadow var(--control-duration) var(--control-ease); }
+  .site-header-wrap.is-scrolled { box-shadow: 0 1px 0 var(--rule), 0 .4rem 1.5rem #4c3f5310; }
   .site-header { position: relative; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-block-size: 5.5rem; }
   .brand { display: inline-flex; align-items: center; min-block-size: 2.75rem; flex: none; }
   .brand img { inline-size: clamp(8rem, 16vw, 12.4rem); }
@@ -450,7 +454,9 @@
     .hero-backdrop { inline-size: min(50%, 45rem); block-size: min(100svh, 55rem); mask-image: linear-gradient(90deg, #000 50%, transparent), linear-gradient(#000 60%, transparent); mask-composite: intersect; }
     .hero-backdrop::before { inline-size: 74rem; inset: -35rem auto auto -16rem; transform: rotate(28deg); }
     .hero-experience { position: absolute; inset: 58% 0 auto auto; inline-size: max-content; max-inline-size: 38%; margin: 0; }
+    :root { --site-header-height: 6.5rem; }
     .site-header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; min-block-size: 6.5rem; gap: clamp(1.25rem, 2.5vw, 2.5rem); }
+    .site-header noscript { display: none; }
     .brand img { inline-size: 11.5rem; }
     .desktop-nav { display: flex; align-items: center; justify-content: center; gap: clamp(1rem, 2vw, 1.875rem); }
     .desktop-nav a { display: flex; align-items: center; min-block-size: var(--control-size); white-space: nowrap; text-decoration: none; font-size: .875rem; font-weight: 550; }

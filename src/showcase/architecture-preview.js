@@ -7,21 +7,23 @@ export function initArchitecture(root,wheel) {
   let failed=false;
   let loadTimer=0;
   let centred=false;
+  const headerHeight=()=>parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0;
   frame.setAttribute('aria-busy','true');
   const alignAt=()=>{
     const bounds=shell.getBoundingClientRect();
-    return scrollY+bounds.top+(bounds.height-innerHeight)/2;
+    return scrollY+bounds.top+(bounds.height-innerHeight-headerHeight())/2;
   };
   const notePosition=()=>{centred=ready&&Math.abs(scrollY-alignAt())<=1;};
   const fit=()=>{
     const keepCentred=centred;
-    const scale=Math.min(1,Math.max(1,innerHeight-32)/Math.max(1,shell.offsetHeight));
+    const scale=Math.min(1,Math.max(1,innerHeight-headerHeight()-32)/Math.max(1,shell.offsetHeight));
     shell.style.setProperty('--preview-scale',String(scale));
     if(keepCentred&&ready)window.scrollTo({top:alignAt(),behavior:'instant'});
     notePosition();
   };
   fit();
   window.addEventListener('resize',fit,{passive:true,signal:life.signal});
+  window.addEventListener('produckta:header-resize',fit,{signal:life.signal});
   window.addEventListener('scroll',notePosition,{passive:true,signal:life.signal});
   document.fonts.ready.then(()=>{if(!life.signal.aborted)fit();});
   wheel.registerPreview(()=>failed?null:{view:frame.contentWindow,ready,alignAt:alignAt()},life.signal);

@@ -427,6 +427,7 @@ export function initHeroRender(wheel) {
     request();
   }
   listen(camera, 'change', changeCamera);
+  listen(window, 'produckta:header-resize', () => {measure();request();});
   listen(portraitWarehouse, 'change', changeCamera);
   listen(tabletCamera, 'change', changeCamera);
   motionPreference.addEventListener('change', preference);

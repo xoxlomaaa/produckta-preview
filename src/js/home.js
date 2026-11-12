@@ -1,7 +1,9 @@
 import {initSmoothScroll} from './smooth-scroll.js';
 import {initPageMotion} from './page-motion.js';
 import {initFaq} from './faq.js';
+import {initStickyHeader} from './sticky-header.js';
 
+initStickyHeader(document.querySelector('.site-header-wrap'));
 initSmoothScroll();
 initPageMotion();
 const faq = document.querySelector('.faq-list');

@@ -1,5 +1,7 @@
 # Produckta · карта проекта
 
+12.11: добавлена закреплённая шапка desktop/mobile. Владелец — `src/js/sticky-header.js`, wrapper в `src/index.html`, оформление и scroll-padding в `src/styles/home.css`. Превью Архитектоники центрируется ниже шапки; чемодан повторяет измерение при изменении её высоты. Настройки общей прокрутки и динамики сцен сохранены. Контракт/целевые проверки — `docs/STICKY-HEADER.md`, `tools/check-sticky-header.cjs`.
+
 12.11: FAQ получил плавное раскрытие/закрытие с native/reduced-motion fallback (`src/js/faq.js`). Мобильный порядок крыши: сцена → управление → описания; grid на desktop сохранён. Явно выровнены zoom/крестик, меню учитывает visualViewport и крупный текст. Владельцы/проверки — `docs/MOBILE-FAQ-CONTROLS.md`, `tools/check-mobile-ui.cjs`; новые CSS/JS в существующих entry points, 3D-модели и скролл не менялись.
 
 12.11: опубликована оптимизация крыши с неизменной геометрией/интерактивом. GLB 6,46MB desktop / 2,81MB mobile вместо 9,68MB; владельцы `src/showcase/roof-assets.js`, `roof-download.js`, `roof.js`, `assets/showcase/construction/viewer.js` и hash-версии в `models/`. Подготовка/тесты — `tools/prepare-roof-models.mjs`, `test-roof-models.mjs`, `check-roof-loading.cjs`; unit включён в Actions. Локальный холодный мобильный профиль 17,7 → 7,8–8,0s; публичный mobile 5,49s. Контракт, ограничения и артефакты — `docs/ROOF-COLD-LOADING.md`. Предложение облегчить GLB в старом техническом аудите теперь реализовано.

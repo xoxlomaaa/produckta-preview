@@ -4,10 +4,12 @@ import {framePacks} from '../src/showcase/locker/config/frame-packs.mjs';
 import {frameSource} from '../src/showcase/locker/src/js/render-story/frame-source.js';
 import {framePool} from '../src/showcase/locker/src/js/render-story/frames.js';
 let requests = 0;
+const priorities = [];
 const originalFetch = globalThis.fetch;
 try {
-  globalThis.fetch = async url => {
+  globalThis.fetch = async (url, options = {}) => {
     requests++;
+    priorities.push(options.priority);
     return new Response(await readFile(new URL('../assets'+url, import.meta.url)));
   };
   for (const pack of framePacks) {
@@ -36,6 +38,14 @@ try {
     source.destroy();
   }
   const first = framePacks[0].entries[0][0];
+  const second = framePacks[1].entries[0][0];
+  const promoted = frameSource([first, second]);
+  const priorityOwner = new AbortController();
+  await promoted.get(first, priorityOwner.signal);
+  promoted.prioritize();
+  await promoted.get(second, priorityOwner.signal);
+  assert.deepEqual(priorities.slice(-2), ['low', 'auto'], 'Visible frames must leave the background priority');
+  promoted.destroy();
   const source = frameSource([first]);
   let fallback = false;
   globalThis.fetch = async url => {

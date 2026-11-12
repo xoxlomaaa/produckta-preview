@@ -1,5 +1,7 @@
 # Produckta · карта проекта
 
+12.11: FAQ получил плавное раскрытие/закрытие с native/reduced-motion fallback (`src/js/faq.js`). Мобильный порядок крыши: сцена → управление → описания; grid на desktop сохранён. Явно выровнены zoom/крестик, меню учитывает visualViewport и крупный текст. Владельцы/проверки — `docs/MOBILE-FAQ-CONTROLS.md`, `tools/check-mobile-ui.cjs`; новые CSS/JS в существующих entry points, 3D-модели и скролл не менялись.
+
 12.11: опубликована оптимизация крыши с неизменной геометрией/интерактивом. GLB 6,46MB desktop / 2,81MB mobile вместо 9,68MB; владельцы `src/showcase/roof-assets.js`, `roof-download.js`, `roof.js`, `assets/showcase/construction/viewer.js` и hash-версии в `models/`. Подготовка/тесты — `tools/prepare-roof-models.mjs`, `test-roof-models.mjs`, `check-roof-loading.cjs`; unit включён в Actions. Локальный холодный мобильный профиль 17,7 → 7,8–8,0s; публичный mobile 5,49s. Контракт, ограничения и артефакты — `docs/ROOF-COLD-LOADING.md`. Предложение облегчить GLB в старом техническом аудите теперь реализовано.
 
 12.11: холодная загрузка чемодана переработана без изменения таймлайна/колеса. Последовательности легче на 29,2% desktop и 52,6% mobile; до готовности сжатого буфера — постер без блокировки прокрутки. Пакеты `assets/showcase/locker/assets/render-v3/`, manifest `src/showcase/locker/config/frame-packs.mjs`, владелец загрузки `src/showcase/locker/src/js/render-story/frame-source.js`. Подготовка/проверки — `tools/prepare-locker-frames.mjs`, `test-locker-frames.mjs`, `check-locker-loading.cjs`. Крыша не компилируется поверх видимой сцены. Контракт, измерения и предел ожидания на медленной сети — `docs/LOCKER-COLD-LOADING.md`; результаты GRAPHICS-MOTION-WOLF относятся к предыдущей версии.
@@ -38,7 +40,7 @@
 | `assets/partners/`, `docs/PARTNER-LOGOS.md` | Шесть видимых локальных логотипов, источники и атрибуция; Alpina/Церезит сняты |
 | `docs/BORDERS.md` | Роли обводок, общие токены и намеренные исключения для иллюстраций/вложенного сайта |
 | `docs/PROCESS-CONTRAST-REVIEW.md`, `docs/PROCESS-TEAM-MERCH.md` | Процесс (теперь сливовый, см. LAYOUT-SCROLL-REFINEMENT), контраст команды, рендер мерча и точечная проверка |
-| `templates/sections/faq.html`, `src/styles/faq.css` | FAQ после логотипов компаний, перед формой заявки |
+| `templates/sections/faq.html`, `src/styles/faq.css`, `src/js/faq.js` | FAQ после логотипов компаний, плавный JS-аккордеон с нативным fallback |
 | `assets/illustrations/duck-ball.svg`, `docs/BRAND-MASCOTS.md` | Новая векторная утка для FAQ и распределение маскотов без повторов |
 | `src/js/home.js` | Боковое мобильное меню (dialog), форма заявки, политика |
 | `docs/MOBILE-HERO-MENU.md` | Кадрирование Hero на телефоне и контракт выезжающего меню |

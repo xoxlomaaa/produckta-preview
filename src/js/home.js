@@ -1,17 +1,36 @@
 import {initSmoothScroll} from './smooth-scroll.js';
 import {initPageMotion} from './page-motion.js';
+import {initFaq} from './faq.js';
 
 initSmoothScroll();
 initPageMotion();
+const faq = document.querySelector('.faq-list');
+if (faq) initFaq(faq);
 
 const menu = document.querySelector(".mobile-menu");
 const menuTrigger = document.querySelector(".mobile-menu-trigger");
 if (menu && menuTrigger) {
+  const menuLife = new AbortController();
+  function fitMenuViewport() {
+    const viewport = window.visualViewport;
+    const width = Math.min(document.documentElement.clientWidth, viewport?.width || innerWidth);
+    // The visual viewport can be narrower than the layout viewport at text/pinch zoom.
+    menu.style.setProperty('--menu-visible-width', `${width}px`);
+    menu.style.setProperty('--menu-visible-left', `${viewport?.offsetLeft || 0}px`);
+    menu.style.setProperty('--menu-visible-top', `${viewport?.offsetTop || 0}px`);
+    menu.style.setProperty('--menu-visible-height', `${viewport?.height || innerHeight}px`);
+  }
+  const viewportChanged = () => {if (menu.open) fitMenuViewport();};
+  window.visualViewport?.addEventListener('resize', viewportChanged, {signal:menuLife.signal});
+  window.visualViewport?.addEventListener('scroll', viewportChanged, {signal:menuLife.signal});
+  window.addEventListener('resize', viewportChanged, {signal:menuLife.signal});
+  window.addEventListener('pagehide', event => {if (!event.persisted) menuLife.abort();}, {signal:menuLife.signal});
   menuTrigger.hidden = false;
   menuTrigger.addEventListener("click", () => {
     if (menu.open) return;
-    menu.showModal();
     document.documentElement.classList.add("menu-is-open");
+    fitMenuViewport();
+    menu.showModal();
     menuTrigger.setAttribute("aria-expanded", "true");
   });
   menu.querySelector(".mobile-menu-close").addEventListener("click", () => menu.close());

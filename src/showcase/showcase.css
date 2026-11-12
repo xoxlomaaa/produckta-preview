@@ -100,8 +100,8 @@
   .cap-roof-brand { color: var(--paper); font-weight: 800; font-size: 1rem; letter-spacing: -.04em; }
   .cap-roof-brand small { display: none; color: var(--paper); font-size: .65rem; font-weight: 500; letter-spacing: 0; }
   .cap-roof-count { color: var(--gold); font-size: .6rem; }
-  .cap-roof-workspace { display: grid; }
-  .cap-roof-stage { position: relative; min-inline-size: 0; block-size: clamp(24rem, 52vw, 37rem); background: radial-gradient(ellipse at center, var(--paper), color-mix(in srgb, var(--teal) 14.2%, var(--paper)) 80%); }
+  .cap-roof-workspace { display: grid; grid-template-areas: 'stage' 'toolbar' 'details'; }
+  .cap-roof-stage { grid-area: stage; position: relative; min-inline-size: 0; block-size: clamp(24rem, 52vw, 37rem); background: radial-gradient(ellipse at center, var(--paper), color-mix(in srgb, var(--teal) 14.2%, var(--paper)) 80%); }
   .cap-roof-viewport, .cap-roof-poster { position: absolute; inset: 0; }
   .cap-roof-viewport canvas { display: block; inline-size: 100%; block-size: 100%; }
   .cap-roof-poster { display: grid; place-items: center; }
@@ -114,11 +114,12 @@
   .cap-roof-stage-top > span { font-size: .6rem; max-inline-size: 23ch; color: var(--slate); }
   .cap-roof-stage-bottom > span { font-size: .6rem; color: var(--slate); max-inline-size: 24ch; }
   .cap-roof-stage :is(button, .cap-zoom) { pointer-events: auto; }
-  .cap-touch-toggle { font-size: .6rem; min-block-size: 2.5rem; padding: .5rem .6rem; }
+  .cap-touch-toggle { font-size: .6rem; min-block-size: var(--control-size); padding: .5rem .6rem; }
   .cap-touch-toggle[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
   .cap-zoom { display: flex; gap: .3rem; }
-  .cap-zoom button { display: grid; place-items: center; inline-size: var(--control-size); block-size: var(--control-size); border-radius: 50%; border: var(--control-border) solid var(--slate); color: var(--slate); background: var(--paper); transition: var(--control-transition); font-size: 1.2rem; }
-  .cap-roof-details { padding: 1.4rem; background: var(--paper); }
+  .cap-zoom button { appearance: none; display: grid; place-items: center; flex: none; width: var(--control-size); height: var(--control-size); padding: 0; line-height: 1; border-radius: 50%; border: var(--control-border) solid var(--slate); color: var(--slate); background: var(--paper); transition: var(--control-transition); }
+  .cap-zoom button > svg { pointer-events: none; }
+  .cap-roof-details { grid-area: details; min-inline-size: 0; padding: 1.4rem; background: var(--paper); }
   .cap-roof-details > .cap-small-label { color: var(--red-action); }
   .cap-roof-details h4 { margin: .7rem 0; font-size: 1.65rem; line-height: 1.12; letter-spacing: -.04em; }
   .cap-roof-intro { font-size: .7rem; color: var(--slate); }
@@ -129,9 +130,9 @@
   .cap-layer-detail { block-size: 9rem; overflow-y: auto; scrollbar-gutter: stable; scrollbar-width: thin; border-block-start: var(--border-width) solid var(--rule); padding-block-start: 1rem; }
   .cap-layer-detail > span { font-size: .75rem; font-weight: 750; }
   .cap-layer-detail > p { margin-block-start: .4rem; font-size: .65rem; line-height: 1.6; color: var(--slate); }
-  .cap-roof-toolbar { display: grid; grid-template-columns: 1fr 3rem; align-items: center; gap: .65rem 1rem; padding: 1.2rem; border-block-start: var(--border-width) solid var(--viewer-rule); }
+  .cap-roof-toolbar { grid-area: toolbar; min-inline-size: 0; display: grid; grid-template-columns: minmax(0, 1fr) 3rem; align-items: center; gap: .65rem 1rem; padding: 1.2rem; border-block-start: var(--border-width) solid var(--viewer-rule); }
   .cap-roof-toolbar label { grid-column: 1 / -1; font-size: .75rem; font-weight: 700; }
-  .cap-roof-toolbar input { --range-progress: 0%; appearance: none; inline-size: 100%; background: transparent; border: 0; min-block-size: 2.75rem; cursor: pointer; }
+  .cap-roof-toolbar input { --range-progress: 0%; appearance: none; min-inline-size: 0; inline-size: 100%; margin: 0; background: transparent; border: 0; min-block-size: 2.75rem; cursor: pointer; }
   .cap-roof-toolbar output { padding: .3rem .4rem; border-radius: .4rem; color: var(--viewer-accent); font-size: .75rem; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
   .cap-roof-toolbar button { grid-column: 1 / -1; }
   .cap-roof-toolbar button[aria-pressed="true"] { color: var(--paper); border-color: var(--viewer-accent); background: var(--viewer-accent); }
@@ -153,17 +154,24 @@
 
   @media (min-width: 40rem) {
     .cap-roof-brand small { display: inline; }
-    .cap-roof-toolbar { grid-template-columns: auto 1fr 3rem auto; }
+    .cap-roof-toolbar { grid-template-columns: auto minmax(0, 1fr) 3rem auto; }
     .cap-roof-toolbar :is(label, button) { grid-column: auto; }
   }
   @media (min-width: 60rem) {
-    .cap-roof-workspace { grid-template-columns: minmax(0, 1.8fr) minmax(17rem, 1fr); }
+    .cap-roof-workspace { grid-template-columns: minmax(0, 1.8fr) minmax(17rem, 1fr); grid-template-areas: 'stage details' 'toolbar toolbar'; }
     .cap-roof-stage { block-size: auto; min-block-size: 38rem; }
     .cap-roof-details { padding: 1.6rem; border-inline-start: var(--border-width) solid var(--viewer-rule); }
     .cap-roof-stage-top { inset-inline: 1.3rem; }
     .cap-roof-stage-bottom { inset-inline: 1.3rem; }
   }
-  @media (hover: hover) and (pointer: fine) { .cap-touch-toggle { display: none; } }
+  @media (width >= 60rem) and (hover: hover) and (pointer: fine) { .cap-touch-toggle { display: none; } }
+  @media (width < 60rem) {
+    .cap-roof-toolbar :is(label, output, button) { font-size: .875rem; }
+    .cap-roof-toolbar .cap-control { line-height: 1.4; }
+    .cap-layer-list button { block-size: auto; min-block-size: var(--control-size); font-size: .8125rem; }
+    .cap-layer-detail { font-size: .875rem; }
+    .cap-roof-details { border-block-start: var(--border-width) solid var(--viewer-rule); }
+  }
   @media (prefers-reduced-motion: reduce) {
     .locker-scene .hero-flight-viewport .render-poster { transform: none; }
   }

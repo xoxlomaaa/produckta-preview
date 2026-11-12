@@ -33,6 +33,7 @@ jobs:
       - name: Check build
         run: |
           node tools/check.mjs
+          node --check src/js/faq.js
           node tools/test-locker-frames.mjs
           node tools/test-roof-models.mjs
       - uses: actions/upload-pages-artifact@v5

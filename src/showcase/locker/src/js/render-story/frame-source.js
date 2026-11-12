@@ -1,7 +1,7 @@
 import {framePacks} from '../../../config/frame-packs.mjs';
 
 // Compressed frames stay resident; only the small moving bitmap window is decoded.
-export function frameSource(urls) {
+export function frameSource(urls, {priority = 'low'} = {}) {
   const wanted = new Set(urls.map(url => url.split('?')[0]));
   const lookup = new Map(), requests = new Map();
   const lifetime = new AbortController();
@@ -17,7 +17,7 @@ export function frameSource(urls) {
   }
   function fetchPack(pack) {
     if (!requests.has(pack.url)) {
-      requests.set(pack.url, fetch(pack.url, {signal:lifetime.signal, priority:'low'})
+      requests.set(pack.url, fetch(pack.url, {signal:lifetime.signal, priority})
         .then(response => {
           if (!response.ok) throw new Error(`Frame pack returned ${response.status}`);
           return response.blob();
@@ -51,5 +51,5 @@ export function frameSource(urls) {
     }));
     return !lifetime.signal.aborted && packs.every(pack => requests.has(pack.url));
   }
-  return {get, prepare, dimensions:url => lookup.get(url.split('?')[0]), destroy() { lifetime.abort(); requests.clear(); }};
+  return {get, prepare, prioritize() { priority = 'auto'; }, dimensions:url => lookup.get(url.split('?')[0]), destroy() { lifetime.abort(); requests.clear(); }};
 }

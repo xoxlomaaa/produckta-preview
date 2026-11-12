@@ -102,7 +102,7 @@ export function initHeroRender(wheel) {
     hero.classList.remove('render-hero-ready');
     sourceRoomProfile = roomProfile();
     delete hero.dataset.framesBuffered;
-    source = frameSource([...new Set(Array.from({length:heroLast}, (_, i) => frameUrls(i + 1)).flat())].filter(Boolean));
+    source = frameSource([...new Set(Array.from({length:heroLast}, (_, i) => frameUrls(i + 1)).flat())].filter(Boolean), {priority:visible ? 'auto' : 'low'});
     warmSource();
     pool = framePool({
       concurrency: profile === 'mobile' ? 4 : 8,
@@ -372,7 +372,7 @@ export function initHeroRender(wheel) {
   const view = new IntersectionObserver(
     ([entry]) => {
       visible = entry.isIntersecting;
-      if (visible) request();
+      if (visible) { source.prioritize(); request(); }
       else stop();
     },
     { rootMargin: '600px' },

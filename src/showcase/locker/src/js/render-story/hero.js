@@ -10,6 +10,7 @@ import { tabletSkyFrame, tabletSkyWidth } from '../../../config/tablet-sky-media
 import { samplePath, smooth } from '../../compat/runtime/scenes/story/story-timeline.js';
 import { motionPreference, staticView } from '../../compat/runtime/scripts/motion.js';
 import { framePool } from './frames.js';
+import { frameSource } from './frame-source.js';
 import { skyPose } from './sky-pose.js';
 
 const clampFrame = (frame) => Math.min(heroLast, Math.max(1, frame));
@@ -57,6 +58,11 @@ export function initHeroRender(wheel) {
     });
   let profile = profileFor();
   let pool;
+  let source;
+  let sourceRoomProfile;
+  let primed = false;
+  let buffered = false;
+  let preparing = false;
   let requested = 0;
   let settleTimer = 0;
   let shown = 0;
@@ -89,10 +95,32 @@ export function initHeroRender(wheel) {
 
   function resetPool() {
     pool?.clear();
+    source?.destroy();
+    primed = false;
+    buffered = preparing = false;
+    shown = 0;
+    hero.classList.remove('render-hero-ready');
+    sourceRoomProfile = roomProfile();
+    delete hero.dataset.framesBuffered;
+    source = frameSource([...new Set(Array.from({length:heroLast}, (_, i) => frameUrls(i + 1)).flat())].filter(Boolean));
+    warmSource();
     pool = framePool({
-      concurrency: profile === 'mobile' ? 2 : 8,
-      capacity: profile === 'mobile' ? 12 : 40,
+      concurrency: profile === 'mobile' ? 4 : 8,
+      capacity: profile === 'mobile' ? 24 : 40,
       changed: request,
+      load:source.get,
+    });
+  }
+
+  function warmSource() {
+    if (preparing || !enabled()) return;
+    preparing = true;
+    const currentSource = source;
+    source.prepare().then(ready => {
+      if (source !== currentSource || lifetime.signal.aborted) return;
+      buffered = true;
+      hero.dataset.framesBuffered = ready ? 'true' : 'fallback';
+      request();
     });
   }
 
@@ -173,7 +201,7 @@ export function initHeroRender(wheel) {
     paintedProfile = profile;
   }
 
-  function paintSky(actor, frame) {
+  function paintSky(actor, frame, dimensions) {
     if (profile !== 'mobile') {
       const offset = profile === 'tablet' ? tabletSkyFrame(frame) : null;
       if (profile === 'desktop') {
@@ -193,8 +221,8 @@ export function initHeroRender(wheel) {
         y * scale +
         ((1 - scale) * height) / 2 +
         blend * width * (0.151 + portraitGap),
-      actor.width * scale,
-      actor.height * scale,
+      (dimensions?.width ?? actor.width) * scale,
+      (dimensions?.height ?? actor.height) * scale,
     );
   }
 
@@ -212,7 +240,7 @@ export function initHeroRender(wheel) {
       resizeCanvases();
     }
     if (actor || shown <= skyLast) skyContext.clearRect(0, 0, skyCanvas.width, skyCanvas.height);
-    if (actor) paintSky(actor, frame);
+    if (actor) paintSky(actor, frame, source.dimensions(skyUrl));
     if (room) {
       roomContext.drawImage(room, 0, 0, roomCanvas.width, roomCanvas.height);
       paintedRoom = roomUrl;
@@ -235,6 +263,15 @@ export function initHeroRender(wheel) {
     if (next !== target) direction = Math.sign(next - target);
     target = next;
     hero.dataset.renderTarget = String(target);
+    // Keep the real poster until the compressed sequence is ready. Scrolling
+    // remains available; never start motion that will exhaust its network buffer.
+    if (!buffered) return;
+    if (!primed) {
+      const runway = [...new Set(Array.from({length:profile === 'mobile' ? 4 : 8}, (_, i) => frameUrls(clampFrame(target + i * direction))).flat())].filter(Boolean);
+      pool.update(runway, new Set(runway), frameUrls(target).filter(Boolean));
+      if (!runway.every(url => pool.get(url))) return;
+      primed = true;
+    }
     const moving = smoothing || performance.now() - lastMovement < settleMs || (shown > 0 && shown !== target);
     // A late decode must not teleport the actor by dozens of source frames.
     // Bridge the gap in short steps, without changing scroll/camera anchors.
@@ -257,7 +294,7 @@ export function initHeroRender(wheel) {
       ? [24, 52].map((delay) => frameAt(wheel.positionAt(now + delay)))
       : [];
     let offsets;
-    if (target !== 1) {
+    if (target !== 1 || shown > 1) {
       offsets = [...Array.from({length: 16}, (_, i) => i + 1), 20, 24, -1, -2, -4]
         .map((offset) => offset * direction);
     } else if (moving || profile !== 'mobile' || finePointer.matches) {
@@ -313,6 +350,7 @@ export function initHeroRender(wheel) {
       delete hero.dataset.renderTarget;
     } else {
       shown = 0;
+      warmSource();
       measure();
       request();
     }
@@ -365,7 +403,7 @@ export function initHeroRender(wheel) {
   );
   function changeCamera() {
     const nextProfile = profileFor();
-    if (nextProfile === profile) return;
+    if (nextProfile === profile && sourceRoomProfile === roomProfile()) return;
     const previousFrame = target;
     pose.freeze();
     profile = nextProfile;
@@ -386,7 +424,7 @@ export function initHeroRender(wheel) {
     request();
   }
   listen(camera, 'change', changeCamera);
-  listen(portraitWarehouse, 'change', request);
+  listen(portraitWarehouse, 'change', changeCamera);
   listen(tabletCamera, 'change', changeCamera);
   motionPreference.addEventListener('change', preference);
   listen(document, 'visibilitychange', () => {
@@ -399,6 +437,7 @@ export function initHeroRender(wheel) {
     view.disconnect();
     size.disconnect();
     motionPreference.removeEventListener('change', preference);
+    source.destroy();
     lifetime.abort();
   });
   listen(window, 'pageshow', request);

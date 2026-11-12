@@ -130,7 +130,13 @@ export async function initRoof(root, parentSignal, scrollController) {
     if (!visible || loading || viewer?.ready || destroyed) return;
     autoLoadTimer = setTimeout(() => {
       if (scrollController?.moving) scheduleAutoLoad();
-      else load();
+      else {
+        // The roof can peek into view while the suitcase is still on screen.
+        // Shader compilation must wait until that preceding scene has left.
+        const scene = document.querySelector('[data-showcase-locker]')?.getBoundingClientRect();
+        if (scene && scene.bottom > 0 && scene.top < innerHeight) return;
+        load();
+      }
     }, 200);
   }
   listen(window, 'scroll', scheduleAutoLoad, {passive: true});

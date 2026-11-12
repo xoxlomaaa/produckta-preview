@@ -31,7 +31,9 @@ jobs:
         env:
           SITE_BASE_PATH: /produckta-preview/
       - name: Check build
-        run: node tools/check.mjs
+        run: |
+          node tools/check.mjs
+          node tools/test-locker-frames.mjs
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist

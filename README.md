@@ -1,5 +1,7 @@
 # Produckta
 
+Холодная загрузка чемодана: ранний сжатый буфер, облегчённые кадры и проверка обратного хода — [docs/LOCKER-COLD-LOADING.md](docs/LOCKER-COLD-LOADING.md). Дополнительных зависимостей для обычной сборки нет; `node tools/test-locker-frames.mjs` включён в CI.
+
 Публичный предпросмотр: **https://xoxlomaaa.github.io/produckta-preview/**. Это версия для обсуждения: сохранены noindex и явный режим формы без отправки данных.
 
 Публикация выполняется GitHub Actions из `main`: Node 24 → сборка с `SITE_BASE_PATH=/produckta-preview/` → GitHub Pages. Локальная сборка по умолчанию остаётся на `/`. Подробности — [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Папки `output/`, `experiments/` и `assets/source/` в Git не включаются.

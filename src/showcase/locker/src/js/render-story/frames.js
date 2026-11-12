@@ -1,4 +1,4 @@
-export function framePool({ concurrency, capacity, changed }) {
+export function framePool({ concurrency, capacity, changed, load }) {
   const decoded = new Map();
   const pending = new Map();
   const failed = new Set();
@@ -7,9 +7,9 @@ export function framePool({ concurrency, capacity, changed }) {
     const controller = new AbortController();
     pending.set(url, controller);
     (async () => {
-      const response = await fetch(url, { signal: controller.signal });
-      if (!response.ok) throw new Error(`Frame request returned ${response.status}`);
-      const bitmap = await createImageBitmap(await response.blob());
+      const blob = await load(url, controller.signal);
+      controller.signal.throwIfAborted();
+      const bitmap = await createImageBitmap(blob);
       if (controller.signal.aborted) {
         bitmap.close();
         return;

@@ -13,6 +13,7 @@ const mime={
   '.jpg':'image/jpeg','.jpeg':'image/jpeg','.avif':'image/avif','.png':'image/png',
   '.woff2':'font/woff2','.woff':'font/woff','.ttf':'font/ttf',
   '.glb':'model/gltf-binary','.wasm':'application/wasm','.txt':'text/plain; charset=utf-8',
+  '.bin':'application/octet-stream',
 };
 createServer(async(req,res)=>{
   if(!['GET','HEAD'].includes(req.method))return res.writeHead(405,{Allow:'GET, HEAD'}).end();

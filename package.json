@@ -1,0 +1,14 @@
+{
+  "name": "producta-preview",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "check": "node --check src/js/home.js && node --check src/js/smooth-scroll.js && node --check tools/preview.mjs && node tools/check.mjs",
+    "verify": "npm run build && npm run check",
+    "preview": "node tools/preview.mjs",
+    "dev": "npm run build && node tools/preview.mjs"
+  }
+}

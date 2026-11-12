@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="Produckta — стратегия, сайты и веб-сервисы, автоматизация и коммуникации. Запускаем продукты и помогаем бизнесу расти.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Produckta — маркетинг, дизайн и разработка</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/brand/favicon.svg">
+  <link rel="preload" href="./assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./styles/home.css">
+  <link rel="stylesheet" href="./styles/page-motion.css">
+  <link rel="stylesheet" href="./styles/faq.css">
+  <link rel="stylesheet" href="./showcase/showcase.css">
+  <link rel="stylesheet" href="./showcase/rental.css">
+  <link rel="stylesheet" href="./showcase/expertise.css">
+  <script type="importmap">{"imports":{"three":"/showcase/vendor/three/build/three.module.js","three/addons/":"/showcase/vendor/three/addons/"}}</script>
+  <script type="module" src="./js/home.js"></script>
+  <script type="module" src="./showcase/showcase.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Перейти к содержанию</a>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+    <symbol id="icon-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="icon-reset" viewBox="0 0 24 24"><path d="M5 8a8 8 0 1 1-1 7M5 3v5h5"/></symbol>
+    <symbol id="icon-target" viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="6"/><circle cx="16" cy="16" r="1.7" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="icon-cursor" viewBox="0 0 32 32"><path d="m10 8 16 10-8 2-3 8-5-20Zm-3-5 1 2M3 9l3 1m8-7-1 3M4 16l3-1"/></symbol>
+    <symbol id="icon-cube" viewBox="0 0 32 32"><path d="m16 3 12 7v13l-12 7-12-7V10l12-7Zm0 14 12-7m-12 7L4 10m12 7v13"/></symbol>
+    <symbol id="icon-speaker" viewBox="0 0 32 32"><path d="M5 12h7l13-7v22l-13-7H5v-8Zm7 8 2 8H9l-2-8m5-8v8m17-8v8"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m6 12 4 4 8-8"/></symbol>
+    <symbol id="icon-window" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18m-12 10v3m6-3v3m-8 0h10"/></symbol>
+  </svg>
+  <div class="hero-backdrop" aria-hidden="true"></div>
+  <header class="site-header shell">
+    <a class="brand" href="./" aria-label="Produckta — главная"><img src="./assets/brand/producta-logo.svg" width="660" height="162" alt="Produckta"></a>
+    <nav class="desktop-nav" aria-label="Основное меню">
+      <a href="#services">Услуги</a><a href="#industries">Отрасли</a><a href="#scenes">Решения</a><a href="#about">Об агентстве</a><a href="#contacts">Контакты</a>
+    </nav>
+    <a class="button header-button" href="#contacts" data-request-link>Обсудить проект</a>
+    <button class="mobile-menu-trigger" type="button" aria-controls="mobile-navigation" aria-expanded="false" aria-haspopup="dialog" hidden>Меню <svg viewBox="0 0 22 16" width="22" height="16" aria-hidden="true"><path d="M1 5h20M1 11h20"/></svg></button>
+    <noscript><nav aria-label="Мобильное меню"><a href="#services">Услуги</a> · <a href="#scenes">Решения</a> · <a href="#contacts">Контакты</a></nav></noscript>
+  </header>
+  <dialog class="mobile-menu" id="mobile-navigation" aria-label="Меню сайта">
+    <div class="mobile-menu-top">
+      <img src="./assets/brand/producta-logo.svg" width="660" height="162" alt="Produckta">
+      <button class="mobile-menu-close" type="button" aria-label="Закрыть меню" autofocus><svg class="control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    </div>
+    <nav class="mobile-menu-links" aria-label="Мобильное меню">
+      <a href="#services">Услуги</a><a href="#industries">Отрасли</a><a href="#scenes">Решения</a><a href="#process">Как работаем</a><a href="#about">Об агентстве</a><a href="#contacts">Контакты</a>
+    </nav>
+    <div class="mobile-menu-bottom">
+      <a class="button" href="#contacts" data-request-link>Обсудить проект <svg class="control-icon ui-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+      <a href="tel:+79037123555">+7 903 712-35-55</a>
+      <a href="mailto:mail@produckta.ru">mail@produckta.ru</a>
+    </div>
+  </dialog>
+  <main id="main" tabindex="-1">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">
+          <span class="hero-title-line">С нами ваш</span>
+          <span class="hero-title-line">маркетинг</span>
+          <span class="hero-title-line"><span>не крякнет</span></span>
+        </h1>
+        <p class="hero-description section-description">Запускаем продукты, создаём сайты и сервисы, автоматизируем рутину.</p>
+        <a class="button" href="#contacts" data-request-link>Обсудить проект <svg class="icon control-icon ui-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"/></svg></a>
+      </div>
+      <div class="hero-art">
+        <div class="hero-scene-window">
+          <img class="hero-skate-scene hero-ramp-scene" src="./assets/illustrations/hero-ramp-layer.svg" width="1544" height="891" fetchpriority="high" alt="Фирменная утка на скейте над трамплином">
+          <img class="hero-skate-scene hero-duck-scene" src="./assets/illustrations/hero-duck-layer.svg" width="1544" height="891" fetchpriority="high" alt="" aria-hidden="true">
+        </div>
+        <div class="hero-experience">
+          <h2 class="hero-experience-title"><span class="sr-only">Более 10 лет</span><span class="experience-value" aria-hidden="true">&gt;10</span><span class="experience-unit" aria-hidden="true">лет</span></h2>
+          <p class="experience-scope">в маркетинге</p>
+          <p class="experience-note">Опыт основателей Produckta.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="services section shell" id="services" aria-labelledby="services-title">
+      <header class="section-heading">
+        <h2 id="services-title">Под задачу<br><span>вашего бизнеса.</span></h2>
+        <p class="section-description">От исследования и запуска продукта до сайта, автоматизации и коммуникаций.</p>
+      </header>
+      <div class="service-grid">
+        <article class="service">
+          <h3>Стратегия</h3>
+          <p>Исследуем рынок, находим точки роста и собираем план запуска.</p>
+        </article>
+        <article class="service">
+          <h3>Сайты и сервисы</h3>
+          <p>Проектируем сайты, личные кабинеты и рабочие инструменты.</p>
+        </article>
+        <article class="service">
+          <h3>Автоматизация</h3>
+          <p>Связываем системы и убираем лишнюю ручную работу.</p>
+        </article>
+        <article class="service">
+          <h3>Коммуникации</h3>
+          <p>Помогаем бренду говорить с клиентами, партнёрами и командой.</p>
+        </article>
+      </div>
+      <div class="industries-panel" id="industries" role="region" aria-labelledby="industries-title">
+        <h3 class="industries-title" id="industries-title">Разные рынки.<br><span>Разные задачи.</span></h3>
+        <p class="section-description">Вникаем в рынок и собираем решение под его задачи.</p>
+        <ul class="industry-list">
+          <li><h4>Строительство</h4><p>Каталоги материалов и заявки от дилеров.</p></li>
+          <li><h4>Промышленность</h4><p>Понятная подача сложных продуктов и запросы на расчёт.</p></li>
+          <li><h4>Девелопмент</h4><p>Сайты проектов, подбор объектов и коммуникации.</p></li>
+          <li><h4>Ритейл</h4><p>Интернет-магазины и программы лояльности.</p></li>
+          <li><h4>IT</h4><p>Позиционирование и сайты для запуска.</p></li>
+          <li><h4>HR</h4><p>Внутренний бренд и сервисы для сотрудников.</p></li>
+        </ul>
+      </div>
+      <a class="services-link" href="#capabilities">Посмотреть решения <svg class="control-icon ui-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"/></svg></a>
+    </section>
+
+    <section class="scenes section shell ambient-section" id="scenes" aria-labelledby="scenes-title">
+      <div class="section-heading"><h2 id="scenes-title">Идеи — <span>в дело.</span></h2><p class="section-description">Создаём сайты, наводим порядок в процессах и помогаем брендам обрести характер.</p></div>
+      <div class="concept-grid">
+        <article class="concept concept-web">
+          <h3>Сайт<br>под задачу</h3>
+          <div class="laptop-art" aria-hidden="true"><div class="laptop-screen"><div class="mini-site">
+              <img src="./assets/illustrations/architecture-800.webp" srcset="./assets/illustrations/architecture-480.webp 480w, ./assets/illustrations/architecture-800.webp 800w" sizes="(min-width: 75rem) 370px, (min-width: 48rem) 31vw, 90vw" loading="lazy" width="800" height="533" alt="">
+              <div class="mini-site-copy"><small>АРХФОРМА</small><strong>Архитектура<br>для людей</strong><span>Пространство для новых идей</span><b>Подробнее <svg class="icon control-icon ui-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"/></svg></b></div>
+            </div></div><div class="laptop-base"></div></div>
+        </article>
+        <article class="concept concept-auto">
+          <h3>Меньше<br>ручной работы</h3>
+          <div class="phone-art" aria-hidden="true"><div class="phone-camera"></div><div class="phone-content"><small>PRODUCKTA / WORK</small><strong>Всё под<br>контролем.</strong><p>Заявки команды</p><div class="phone-task"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Новая заявка<small>Передана в работу</small></span></div><div class="phone-task"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Ответственный<small>Уже назначен</small></span></div><div class="phone-line"></div><div class="phone-line"></div></div></div>
+        </article>
+        <article class="concept concept-brand">
+          <h3>От идеи<br>до запуска</h3>
+          <div class="tote-art" aria-hidden="true"><div class="tote-handle"></div><div class="tote-body"><img class="tote-logo" src="./assets/brand/producta-logo.svg" width="660" height="162" alt="" loading="lazy"><img class="tote-duck" src="./assets/illustrations/duck-coffee.svg" width="405" height="421" alt="" loading="lazy"></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section shell process" id="process" aria-labelledby="process-title">
+      <div class="process-intro">
+        <h2 id="process-title">Как мы <span>работаем</span></h2>
+        <p class="section-description">Вникаем. Делаем. Доводим.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Разбираемся</h3><p>Погружаемся в задачу, уточняем цели и контекст.</p></li>
+        <li><h3>Проектируем</h3><p>Разрабатываем решение, структуру и ключевые сценарии.</p></li>
+        <li><h3>Собираем</h3><p>Делаем дизайн, сайт или сервис, настраиваем интеграции.</p></li>
+        <li><h3>Запускаем</h3><p>Проверяем, передаём проект и помогаем развивать.</p></li>
+      </ol>
+      <img class="process-duck" src="./assets/illustrations/duck-laptop.svg" width="423" height="410" alt="" loading="lazy">
+    </section>
+
+    <!-- capabilities -->
+
+    <section class="about shell" id="about" aria-labelledby="about-title">
+      <div class="about-panel">
+        <div class="about-heading">
+          <h2 id="about-title">За проектом —<br><span>люди.</span></h2>
+          <p class="section-description">Produckta — команда на стыке маркетинга, дизайна и разработки. Ведём проекты целиком или подключаемся к одному этапу.</p>
+          <ul class="about-specialties"><li>Стратегия</li><li>Дизайн</li><li>Разработка</li></ul>
+        </div>
+        <div class="team-grid" aria-label="Партнёры проекта">
+          <figure class="team-member">
+            <div class="team-photo"><img src="./assets/team/ksenia-klinovskaya-720.webp" srcset="./assets/team/ksenia-klinovskaya-360.webp 360w, ./assets/team/ksenia-klinovskaya-720.webp 720w" sizes="(min-width: 1280px) 350px, (min-width: 768px) 28vw, 84vw" width="720" height="900" alt="Ксения Клиновская" loading="lazy" decoding="async"></div>
+            <figcaption><strong>Ксения Клиновская</strong><span>CEO · партнёр проекта</span></figcaption>
+          </figure>
+          <figure class="team-member">
+            <div class="team-photo"><img src="./assets/team/alexander-rekunov-720.webp" srcset="./assets/team/alexander-rekunov-360.webp 360w, ./assets/team/alexander-rekunov-720.webp 720w" sizes="(min-width: 1280px) 350px, (min-width: 768px) 28vw, 84vw" width="720" height="900" alt="Александр Рекунов" loading="lazy" decoding="async"></div>
+            <figcaption><strong>Александр Рекунов</strong><span>CEO · партнёр проекта</span></figcaption>
+          </figure>
+          <figure class="team-member">
+            <div class="team-photo"><img src="./assets/team/kirill-wolf-v01-720.webp" srcset="./assets/team/kirill-wolf-v01-360.webp 360w, ./assets/team/kirill-wolf-v01-720.webp 720w" sizes="(min-width: 1280px) 350px, (min-width: 768px) 28vw, 84vw" width="720" height="900" alt="Иллюстрация волка в белой рубашке — временный портрет Кирилла Кодинцева" loading="lazy" decoding="async"></div>
+            <figcaption><strong>Кирилл Кодинцев</strong><span>CEO · партнёр проекта</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell reviews ambient-section" id="reviews" aria-labelledby="reviews-title">
+      <h2 id="reviews-title">Как с нами <span>работается</span></h2>
+      <p class="section-description" id="reviews-note">Пока это примерка: отзывы, авторы и компании вымышлены. Здесь будут настоящие благодарности.</p>
+      <ul class="review-list" aria-label="Шесть заготовок отзывов" aria-describedby="reviews-note">
+        <li class="review-card review-card--featured review-card--dark">
+          <div class="review-top"><span class="review-logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M2 17h7l4-10 6 19 4-9h7"/></svg>пульс</span><span class="review-demo">Демо</span></div>
+          <blockquote class="review-quote"><p class="review-lead">«На связи. В теме. До результата».</p><p>С ними спокойно: понятно, что происходит, какой следующий шаг и кто за него отвечает. Можно обсуждать, спорить и вместе находить решение.</p></blockquote>
+          <p class="review-author"><strong>Илья Соколов</strong><span>Руководитель проекта · Пульс</span></p>
+        </li>
+        <li class="review-card">
+          <div class="review-top"><span class="review-logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25V9h8v16M19 25V5h8v20M3 25h26"/></svg>тихий цех</span><span class="review-demo">Демо</span></div>
+          <blockquote class="review-quote"><p class="review-lead">«Сложное объяснили. Лишнее убрали».</p><p>У нас непростой продукт, а теперь понятный сайт. Ребята вникли в детали и помогли показать главное. За терпение — отдельное спасибо.</p></blockquote>
+          <p class="review-author"><strong>Михаил Ланской</strong><span>Руководитель компании · Тихий цех</span></p>
+        </li>
+        <li class="review-card">
+          <div class="review-top"><span class="review-logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25 25 5M7 5h18v18M5 16l6-6"/></svg>марш</span><span class="review-demo">Демо</span></div>
+          <blockquote class="review-quote"><p class="review-lead">«Рутина ушла. Команда выдохнула».</p><p>Связали наши сервисы и убрали ручное перекладывание данных. Наконец-то занимаемся задачами, а не бесконечными копировать-вставить.</p></blockquote>
+          <p class="review-author"><strong>Ольга Миронова</strong><span>Операционный директор · Марш</span></p>
+        </li>
+        <li class="review-card">
+          <div class="review-top"><span class="review-logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 26C3 9 13 3 27 5c1 15-6 24-21 21ZM6 26 22 10"/></svg>лист</span><span class="review-demo">Демо</span></div>
+          <blockquote class="review-quote"><p class="review-lead">«От идеи до запуска — с одной командой».</p><p>Не пришлось пересказывать задачу пяти подрядчикам. Продумали подачу, собрали сайт и помогли с запуском. Очень удобно, когда всё в одних руках.</p></blockquote>
+          <p class="review-author"><strong>Денис Кравцов</strong><span>Основатель · Лист</span></p>
+        </li>
+        <li class="review-card">
+          <div class="review-top"><span class="review-logo"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="12" cy="16" r="9"/><path d="M17 7h12v18H17"/></svg>форма</span><span class="review-demo">Демо</span></div>
+          <blockquote class="review-quote"><p class="review-lead">«Красиво. И наконец-то про нас».</p><p>Поймали характер бренда и собрали его в цельный образ: от айдентики до текстов. Без чужих шаблонов и десяти кругов «что-то не то».</p></blockquote>
+          <p class="review-author"><strong>Елена Громова</strong><span>Бренд-директор · Форма</span></p>
+        </li>
+        <li class="review-card review-card--featured review-card--coral">
+          <div class="review-top"><span class="review-logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m3 10 13-6 13 6-13 6zM3 16l13 6 13-6M3 22l13 6 13-6"/></svg>слой</span><span class="review-demo">Демо</span></div>
+          <blockquote class="review-quote"><p class="review-lead">«Разобрались раньше, чем мы дописали бриф».</p><p>Помогли собрать разрозненные идеи в понятную стратегию. Появился план: что делать, для кого и зачем. И всё человеческим языком.</p></blockquote>
+          <p class="review-author"><strong>Анна Ветрова</strong><span>Директор по маркетингу · Слой</span></p>
+        </li>
+      </ul>
+      <div class="partners" id="partners">
+        <h3 class="partners-title">Компании, с которыми успели поработать</h3>
+        <ul class="partner-list" aria-label="Компании из опыта команды">
+          <li><img class="partner-logo partner-logo--penoplex" src="./assets/partners/penoplex.svg" alt="ПЕНОПЛЭКС" width="507" height="105" loading="lazy" decoding="async"></li>
+          <li><img class="partner-logo partner-logo--stacked" src="./assets/partners/caparol.svg" alt="Caparol" width="340" height="307" loading="lazy" decoding="async"></li>
+          <li><img class="partner-logo partner-logo--daw" src="./assets/partners/daw.svg" alt="DAW" width="270" height="80" loading="lazy" decoding="async"></li>
+          <li><img class="partner-logo partner-logo--nalegkee" src="./assets/partners/nalegkee.svg" alt="Налегкее" width="1920" height="384" loading="lazy" decoding="async"></li>
+          <li><img class="partner-logo partner-logo--architectonica" src="./assets/partners/architectonica.svg" alt="Архитектоника" width="1998" height="444" loading="lazy" decoding="async"></li>
+          <li><img class="partner-logo partner-logo--dentikom" src="./assets/partners/dentikom.svg" alt="Dentikom" width="296" height="57" loading="lazy" decoding="async"></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- faq -->
+
+    <section class="contact shell" id="contacts" aria-labelledby="contact-title">
+      <div class="contact-panel">
+        <div class="contact-intro">
+          <h2 id="contact-title">Давайте обсудим<br>ваш <span>проект</span></h2>
+          <p class="section-description">Расскажите о задаче — предложим подход и покажем, как можем помочь вашему бизнесу.</p>
+          <img class="contact-duck" src="./assets/illustrations/duck-astronaut.svg" width="375" height="442" alt="" loading="lazy">
+          <p class="contact-caption">С вас — задача.<br>С нас — идеи и план.</p>
+        </div>
+        <form class="request" data-preview-form method="post" aria-labelledby="request-title" aria-describedby="request-note">
+          <h3 class="sr-only" id="request-title">Заявка на обсуждение проекта</h3>
+          <fieldset class="request-group">
+            <legend>Над чем поработаем?</legend>
+            <p class="request-hint">Можно выбрать несколько направлений</p>
+            <div class="request-options">
+              <label class="request-option"><input type="checkbox" name="services" value="strategy"><span>Аналитика и стратегия</span></label>
+              <label class="request-option"><input type="checkbox" name="services" value="branding"><span>Брендинг и дизайн</span></label>
+              <label class="request-option"><input type="checkbox" name="services" value="web"><span>Сайты и сервисы</span></label>
+              <label class="request-option"><input type="checkbox" name="services" value="automation"><span>Автоматизация</span></label>
+              <label class="request-option"><input type="checkbox" name="services" value="communications"><span>Коммуникации</span></label>
+              <label class="request-option"><input type="checkbox" name="services" value="full-cycle"><span>Проект под ключ</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="request-group">
+            <legend>Ориентировочный бюджет</legend>
+            <div class="request-options request-options--budget">
+              <label class="request-option"><input type="radio" name="budget" value="50-200"><span>50–200 тыс. ₽</span></label>
+              <label class="request-option"><input type="radio" name="budget" value="200-400"><span>200–400 тыс. ₽</span></label>
+              <label class="request-option"><input type="radio" name="budget" value="400-600"><span>400–600 тыс. ₽</span></label>
+              <label class="request-option"><input type="radio" name="budget" value="600-plus"><span>От 600 тыс. ₽</span></label>
+            </div>
+          </fieldset>
+          <div class="request-fields">
+            <label class="field-wide">Опишите задачу *<textarea name="task" rows="3" maxlength="3000" placeholder="Что хотите сделать? Какую задачу решить?" required></textarea></label>
+            <label>Имя *<input name="name" autocomplete="name" maxlength="120" placeholder="Как к вам обращаться" required></label>
+            <label>Телефон *<input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="32" placeholder="+7 (999) 123-45-67" required></label>
+            <label>Email<input type="email" name="email" autocomplete="email" maxlength="254" placeholder="you@company.ru"></label>
+            <label>Ваш вопрос<input name="question" maxlength="500" placeholder="Что хотите уточнить?"></label>
+          </div>
+          <div class="request-consent">
+            <input type="checkbox" name="consent" id="request-consent" value="yes" required aria-labelledby="request-consent-label request-policy-link">
+            <div><label id="request-consent-label" for="request-consent">Согласен на обработку персональных данных и ознакомлен с</label> <a class="privacy-link" id="request-policy-link" href="#privacy-policy" data-policy-open aria-haspopup="dialog" aria-controls="privacy-policy">политикой конфиденциальности</a>.</div>
+          </div>
+          <button class="button request-submit" type="submit" disabled>Обсудить проект <svg class="icon control-icon ui-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"/></svg></button>
+          <p class="request-note" id="request-note">Предпросмотр: форма проверяет поля, но пока не отправляет заявку. * Обязательные поля.</p>
+          <p class="request-status" role="status" aria-live="polite" data-form-status></p>
+        </form>
+      </div>
+      <dialog class="privacy-dialog" id="privacy-policy" aria-labelledby="privacy-title">
+        <h2 id="privacy-title">Политика конфиденциальности</h2>
+        <p>Это место для документа публичной версии сайта. Текст с данными оператора, условиями обработки и контактами будет добавлен перед запуском.</p>
+        <p>В текущем предпросмотре данные из формы не отправляются и не сохраняются на сервере.</p>
+        <form method="dialog"><button class="button" type="submit">Закрыть</button></form>
+      </dialog>
+    </section>
+  </main>
+  <footer class="site-footer shell" id="footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="brand" href="./" aria-label="Produckta — главная"><img src="./assets/brand/producta-logo.svg" width="660" height="162" alt="Produckta" loading="lazy"></a>
+        <p>Маркетинг. Дизайн. Разработка.</p>
+      </div>
+      <div class="footer-contact-group">
+        <h3 class="footer-title">Контакты</h3>
+        <dl class="footer-contacts">
+          <div><dt>Телефон</dt><dd><a href="tel:+79037123555">+7 903 712-35-55</a></dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:mail@produckta.ru">mail@produckta.ru</a></dd></div>
+        </dl>
+      </div>
+      <div class="footer-social-group">
+        <h3 class="footer-title">Мы в соцсетях</h3>
+        <ul class="footer-socials" aria-label="Контакт в Telegram и место для ссылки VK">
+          <li><a class="footer-social footer-social--telegram" href="https://t.me/sasharekun" target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram: @sasharekun" title="Telegram — @sasharekun"><span class="footer-social-mark" aria-hidden="true"></span></a></li>
+          <li><span class="footer-social footer-social--vk" aria-label="VK — ссылка появится позже" aria-disabled="true" title="VK — ссылка появится позже"><span class="footer-social-mark" aria-hidden="true"></span></span></li>
+        </ul>
+        <p class="footer-placeholder-note">Telegram: @sasharekun · VK добавим позже</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <small>© Produckta, 2026</small>
+      <button class="footer-policy" type="button" data-policy-open aria-haspopup="dialog" aria-controls="privacy-policy">Политика конфиденциальности <svg class="icon control-icon ui-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"/></svg></button>
+    </div>
+  </footer>
+</body>
+</html>

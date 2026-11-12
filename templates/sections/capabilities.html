@@ -1,0 +1,49 @@
+    <section class="capabilities section shell" id="capabilities" aria-labelledby="capabilities-title">
+      <header class="cap-heading"><h2 id="capabilities-title">Вот что мы <span>можем.</span></h2><p class="section-description">От исследования рынка до сайта и сервиса — показываем, как решаем задачи.</p></header>
+
+      <article class="cap-project" id="architecture-showcase" aria-labelledby="architecture-title" data-architecture-preview>
+        <header class="cap-project-heading"><span class="cap-number" aria-hidden="true">01</span><h3 id="architecture-title">Немного динамики? Запросто.</h3></header>
+        <p class="section-description cap-project-description">Анимация, типографика и плавная прокрутка — сайт, который интересно рассматривать.</p>
+        <div class="cap-site-shell"><div class="cap-site-bar"><span class="cap-site-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Архитектоника</span></div><iframe class="cap-site-screen" data-architecture-frame data-src="/showcase/architecture/index.html" src="about:blank" title="Архитектоника: первые четыре раздела сайта" sandbox="allow-scripts allow-same-origin" loading="lazy"></iframe></div>
+      </article>
+
+      <article class="cap-project" aria-labelledby="locker-showcase-title">
+        <header class="cap-project-heading"><span class="cap-number" aria-hidden="true">02</span><h3 id="locker-showcase-title">Листаете сайт. Попадаете в историю.</h3></header>
+        <p class="section-description cap-project-description">Соединяем 3D-сцены в одну историю: движением камеры и объектов управляет прокрутка.</p>
+        <div class="locker-scene" data-render-hero data-showcase-locker>
+          <div class="hero-composition">
+            <div class="hero-flight-track" data-flight-track><div class="hero-main" data-flight-stage><div class="hero-sky" data-sky-panel>
+              <div class="cap-locker-clouds flight-clouds" aria-hidden="true"><canvas class="flight-cloud-field" data-cloud-worker="/showcase/locker/src/js/render-story/sky-cloud-worker.js"></canvas><div class="flight-cloud"></div></div>
+              <div class="hero-copy"><p class="cap-locker-title">Из облаков —<br>прямо на своё<br>место.</p></div>
+              <div class="hero-flight-viewport" data-flight-viewport role="img" aria-label="Чемодан на воздушных шарах раскрывается и опускается с неба на склад при прокрутке страницы."><picture class="render-poster"><source media="(width &lt; 744px)" srcset="./showcase/locker/assets/render-v1/sky-mobile-overscan/poster.webp"><source media="(744px &lt;= width &lt; 1240px)" srcset="./showcase/locker/assets/render-v1/sky-tablet/poster.webp"><img src="./showcase/locker/assets/render-v1/sky-desktop/0001.webp" width="1530" height="1116" alt="" loading="lazy"></picture><canvas class="render-layer" aria-hidden="true"></canvas></div>
+              
+            </div></div></div>
+            <div class="hero-warehouse-track" data-warehouse-track><div class="hero-warehouse" data-warehouse-panel><picture class="warehouse-poster render-poster"><source media="(width &lt;= 540px)" srcset="./showcase/locker/assets/render-v1/warehouse-mobile/0001.webp"><img src="./showcase/locker/assets/render-v1/warehouse-desktop/0001.webp" width="1920" height="1013" alt="Склад с чемоданами, сумками и рюкзаками." loading="lazy"></picture><canvas class="render-layer" aria-hidden="true"></canvas><div class="warehouse-copy" data-warehouse-copy></div></div></div>
+            <aside class="cap-locker-aside"><p>Две сцены.<br>Один переход.</p><span>Собрали 3D-сцены и переход из неба в интерьер. Настроили движение камеры и объектов, связали анимацию с прокруткой и адаптировали её под компьютер и телефон.</span><img class="cap-locker-detail" src="./showcase/locker/open-suitcase-table.webp" width="1760" height="842" alt="Открытый чемодан с вещами на столе" loading="lazy" decoding="async" draggable="false"></aside>
+          </div>
+        </div>
+      </article>
+
+      <article class="cap-project" id="construction-showcase" aria-labelledby="roof-showcase-title" data-roof-demo>
+        <header class="cap-project-heading"><span class="cap-number" aria-hidden="true">03</span><h3 id="roof-showcase-title">Сложный продукт. Теперь всё видно.</h3></header>
+        <p class="section-description cap-project-description">Показываем продукт в разрезе: модель можно вращать, разбирать на слои и изучать детали.</p>
+        <div class="cap-roof-shell">
+          <div class="cap-roof-top"><span class="cap-roof-brand">Строительная система </span></div>
+          <div class="cap-roof-workspace">
+            <div class="cap-roof-stage">
+              <div class="cap-roof-viewport" data-roof-viewport role="region" aria-label="3D-модель крыши. Стрелки — вращение, плюс и минус — масштаб, 0 — сброс." tabindex="0"></div>
+              <div class="cap-roof-poster" data-roof-poster><img src="./showcase/construction/poster.webp" width="1400" height="1400" alt="Чёрная металлическая кровля, деревянные стропила и волокнистая минеральная вата в разрезе." loading="lazy"><div class="cap-roof-load"><p data-roof-status role="status">Загрузка модели…</p><button type="button" class="cap-control" data-roof-load>Загрузить 3D</button></div></div>
+              <div class="cap-roof-stage-top"><button type="button" class="cap-control cap-touch-toggle" data-roof-touch aria-pressed="false" disabled>Вращать модель</button></div>
+              <div class="cap-roof-stage-bottom"><div class="cap-zoom"><button type="button" data-roof-zoom="out" aria-label="Отдалить модель" disabled><svg class="control-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-minus"/></svg></button><button type="button" data-roof-zoom="in" aria-label="Приблизить модель" disabled><svg class="control-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-plus"/></svg></button><button type="button" data-roof-reset aria-label="Собрать систему и сбросить ракурс" disabled><svg class="control-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-reset"/></svg></button></div></div>
+            </div>
+            <aside class="cap-roof-details"><h4>У каждого слоя<br>своя работа.</h4><div class="cap-layer-list" role="group" aria-label="Слои строительной системы" data-roof-layers></div><div class="cap-layer-detail" aria-live="polite"><span data-roof-layer-role></span><p data-roof-layer-text></p></div></aside>
+          </div>
+          <div class="cap-roof-toolbar"><label for="cap-explode">Раздвинуть слои</label><input id="cap-explode" type="range" min="0" max="100" value="0" data-roof-explode disabled><output for="cap-explode" data-roof-explode-output>0%</output><button type="button" class="cap-control" data-roof-isolate aria-pressed="false" disabled>Только выбранный слой</button></div>
+        </div>
+      </article>
+
+      <!-- rental-demo -->
+      <!-- expertise-cases -->
+      <div class="cap-outro"><p>Есть задача посложнее?<br><strong>Вот с неё и начнём.</strong></p><a class="button button-primary" href="#contacts">Обсудить проект <svg class="control-icon ui-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"/></svg></a></div>
+      <noscript><p>Для демонстраций нужен JavaScript. Иллюстрации сцен остаются доступны.</p></noscript>
+    </section>

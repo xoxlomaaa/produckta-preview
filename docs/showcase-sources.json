@@ -1,0 +1,16 @@
+{
+  "promoted": "2026-11-11",
+  "architecture": {
+    "source": "C:/Users/Павел/Desktop/Sites/Архитектоника/dist-onda",
+    "sourceHomeSha256": "bea924f16469aaf8df5a2b82c7f8168ebf433d98e3f83aa60de68c9c38e6f59b",
+    "sections": 4,
+    "lastSection": "События в деле",
+    "prefix": "/showcase/architecture"
+  },
+  "locker": "Local prepared WebP sequence and adapted readable modules from the reviewed capabilities prototype",
+  "construction": "Own mineral wool model and the locally adapted SystemViewer; Three.js and Draco licenses retained",
+  "runtime": "src/showcase",
+  "media": "assets/showcase",
+  "templates": "templates",
+  "build": "Self-contained; no experiment or external donor directories required"
+}

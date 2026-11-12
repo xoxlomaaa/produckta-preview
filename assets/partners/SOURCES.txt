@@ -1,0 +1,13 @@
+Partner logos prepared for Produckta, 2026-11-12.
+All logos are property of their respective owners. The logo wall refers to the team's experience, as supplied by the project owner.
+
+PENOPLEX: original vector supplied in the owner's PENOPLEX project, output/jacket-branding/sources/logo-full.svg. Identity checked against https://www.penoplex.ru/ .
+Caparol: https://www.caparol.de/typo3conf/ext/theme_caparol/Resources/Public/Images/caparol_logo.svg
+Alpina: https://alpina-farben.de/fileadmin/assets/img/site/alpina-logo-brandbar.svg
+DAW SE: https://commons.wikimedia.org/wiki/File:DAW_Logo_plus_Schriftzug.svg ; author/source DAW SE. Original: https://upload.wikimedia.org/wikipedia/commons/5/5e/DAW_Logo_plus_Schriftzug.svg . Licensed under CC BY-SA 3.0 DE, https://creativecommons.org/licenses/by-sa/3.0/de/ . Monochrome adaptation and exterior whitespace trim by Produckta, 2026-11-12; adaptation distributed under the same license. Geometry retained. Identity checked against https://www.daw.de/ .
+Ceresit: exact vector paths extracted from page 2 of https://www.ceresit.ru/upload/iblock/900/xmmtwy9q6rri5gj7pp3pgh05w2s7pebt/ceresit_tds_cn178.pdf ; checked against https://www.ceresit.ru/ru/img/ceresit-logo.webp .
+Nalegkee: original vector from the owner's Nalegkee website, assets/logo-nalegree.svg.
+Architectonica: original vector from the embedded portfolio website, assets/showcase/architecture/agency-logo.svg.
+Dentikom: exact vector paths extracted from the owner's Dentikom+_logo.pdf. Identity/site checked at https://dentikom.ru/ and the supplied print source.
+
+Preparation: colors mapped to one slate tone with white knockouts retained; only empty exterior margins trimmed. Website CSS renders all marks at 28% opacity on white. No fonts, scripts, embedded bitmaps or external resource references are required by the SVG files.

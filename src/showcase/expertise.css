@@ -1,0 +1,39 @@
+@layer components {
+  .cap-expertise-grid { display: grid; gap: 1.1rem; }
+  .cap-expertise-grid article { min-inline-size: 0; border-radius: 1.1rem; }
+  .cap-expertise-label { display: block; margin-block-end: 1.2rem; font-size: .8rem; font-weight: 650; }
+  .cap-expertise-grid h4 { margin: 0 0 1.25rem; font-size: clamp(1.7rem, 3vw, 2.5rem); line-height: 1.12; letter-spacing: -.045em; text-wrap: balance; }
+  .cap-expertise-grid p, .cap-expertise-action dd { font-size: 1rem; line-height: 1.65; }
+  .cap-expertise-research { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; padding: clamp(1.5rem, 3vw, 2.75rem); background: color-mix(in srgb, var(--teal) 13.8%, var(--paper)); }
+  .cap-expertise-research::before { content: ''; position: absolute; z-index: -1; inline-size: 160rem; aspect-ratio: 1493 / 647; inset: auto auto -16rem -22rem; background: var(--teal); opacity: .17; mask: url('../assets/illustrations/brand-ramp-mask.svg') center / contain no-repeat; transform: rotate(-12deg); transform-origin: 23% 70%; pointer-events: none; }
+  .cap-expertise-research .cap-expertise-label { color: var(--slate); }
+  .cap-expertise-action { margin-block: 1.6rem 0; }
+  .cap-expertise-action dt { margin-block-end: .5rem; font-size: .85rem; font-weight: 750; }
+  .cap-expertise-action dd { margin: 0; }
+  .cap-expertise-result { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1.3rem; margin-block: auto 1.5rem; padding-block-start: 2rem; }
+  .cap-expertise-result strong { color: var(--slate); font-size: clamp(7rem, 13vw, 11rem); font-weight: 650; line-height: .95; letter-spacing: -.08em; }
+  .cap-expertise-result p { font-size: 1.05rem; font-weight: 650; line-height: 1.45; }
+  .cap-expertise-research-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-block-start: .8rem; font-size: .8rem; }
+  .cap-expertise-stamp { display: inline-block; padding: .6rem .8rem; border-radius: .4rem; background: var(--gold); color: var(--ink); transform: rotate(-4deg); font-weight: 650; }
+  .cap-expertise-story { padding: clamp(1.5rem, 2.5vw, 2.25rem); }
+  .cap-expertise-loyalty { background: color-mix(in srgb, var(--gold) 11.2%, var(--paper)); }
+  .cap-expertise-comms { background: color-mix(in srgb, var(--ink) 4.8%, var(--paper)); }
+  .cap-expertise-story h4 { font-size: clamp(1.6rem, 2.4vw, 2rem); }
+  .cap-expertise-story > p + p { margin-block-start: .65rem; }
+  .cap-expertise-delivery { margin-block-start: 1.15rem; padding-block-start: 1rem; border-block-start: var(--border-width) solid var(--rule); font-size: .875rem; font-weight: 650; line-height: 1.6; }
+  .cap-expertise-merch { position: relative; isolation: isolate; overflow: hidden; display: grid; align-items: center; gap: 2rem; min-block-size: 21rem; padding: clamp(1.5rem, 3vw, 2.75rem); background: var(--ink); color: var(--paper); }
+  .cap-expertise-merch::before { content: ''; position: absolute; z-index: -1; inline-size: clamp(145rem, 210vw, 180rem); aspect-ratio: 1493 / 647; inset: -30rem auto auto -24rem; mask: url('../assets/illustrations/brand-ramp-mask.svg') center / contain no-repeat; background: var(--gold); opacity: .13; transform: rotate(12deg); transform-origin: top left; pointer-events: none; }
+  .cap-expertise-merch h4, .cap-expertise-merch p { color: var(--paper); }
+  .cap-expertise-merch h4 { margin-block-end: 1.25rem; }
+  .cap-expertise-merch .cap-expertise-label { color: var(--gold); }
+  .cap-expertise-merch-copy ul { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.3rem 0 0; padding: 0; list-style: none; }
+  .cap-expertise-merch-copy li { padding: .4rem .7rem; border: var(--border-width) solid var(--rule-inverse); border-radius: .4rem; font-size: .75rem; line-height: 1.4; }
+  .cap-expertise-merch-visual { min-inline-size: 0; margin: 0; }
+  .cap-expertise-merch-visual img { inline-size: 100%; block-size: auto; }
+  @media (width >= 56rem) {
+    .cap-expertise-grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); }
+    .cap-expertise-research { grid-row: span 2; }
+    .cap-expertise-merch { grid-column: 1 / -1; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 3rem; }
+    .cap-expertise-merch::before { inset-block-start: -40rem; }
+  }
+}

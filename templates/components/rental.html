@@ -1,0 +1,41 @@
+      <article class="cap-project" id="admin-showcase" aria-labelledby="admin-showcase-title" data-admin-demo>
+        <header class="cap-project-heading"><span class="cap-number" aria-hidden="true">04</span><h3 id="admin-showcase-title">Заявки из разных мест. Порядок — в одном.</h3></header>
+        <p class="section-description cap-project-description">Интерфейс проката: заявки из разных каналов, выдача, возврат и учёт оплаты.</p>
+        <div class="cap-site-shell cap-admin-shell">
+          <div class="cap-site-bar"><span class="cap-site-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Прокат велосипедов / Управление</span></div>
+        <div class="rental">
+          <div data-rental-workspace>
+          <header class="rental-header"><div class="rental-identity"><span class="rental-mark" aria-hidden="true"><svg viewBox="0 0 40 32" focusable="false"><circle cx="9" cy="23" r="6.5"/><circle cx="31" cy="23" r="6.5"/><path d="m9 23 7-11 4 11H9m7-11h10l-6 11m11 0L24 7h6M16 12l-2-4m-3 0h6m3 15h3"/></svg></span><div><span class="cap-small-label">Рабочее место администратора</span><h4>Прокат велосипедов</h4></div></div><div class="rental-shift"><div class="rental-shift-info"><span><i></i> Журнал проката</span><strong>Сайт · Telegram · На месте</strong></div><button type="button" data-admin-reset><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 6.5A6.5 6.5 0 1 1 3.5 12M4 2.5v4.5h4.5"/></svg><span>Начать заново</span></button></div></header>
+          <div class="rental-content">
+            <div class="rental-summary" aria-label="Сводка проката"><div><span>Ожидают выдачи</span><strong data-rental-stat="reserved">—</strong><small>Брони с сайта и из Telegram</small></div><div><span>Сейчас в прокате</span><strong data-rental-stat="rented">—</strong><small data-rental-overdue>—</small></div><div><span>Возвращено</span><strong data-rental-stat="returned">—</strong><small>Велосипеды снова в работе</small></div></div>
+            <div class="rental-journal-heading"><div><h5>Журнал бронирований</h5></div><div class="rental-channels" role="group" aria-label="Источник бронирования"><button type="button" data-source="all" aria-pressed="true">Все <b data-source-count="all"></b></button><button type="button" data-source="website" aria-pressed="false"><span class="rental-source-icon" data-source-icon="website" aria-hidden="true"></span>Сайт <b data-source-count="website"></b></button><button type="button" data-source="telegram" aria-pressed="false"><span class="rental-source-icon" data-source-icon="telegram" aria-hidden="true"></span>Telegram <b data-source-count="telegram"></b></button><button type="button" data-source="desk" aria-pressed="false">На месте <b data-source-count="desk"></b></button></div></div>
+            <div class="rental-tools"><div role="group" aria-label="Статус бронирования" class="rental-status-filters"><button type="button" data-filter="all" aria-pressed="true">Все брони</button><button type="button" data-filter="reserved" aria-pressed="false">Ожидают</button><button type="button" data-filter="rented" aria-pressed="false">В прокате</button><button type="button" data-filter="returned" aria-pressed="false">Возвращены</button></div><label class="rental-search"><span class="sr-only">Найти бронь по имени или номеру</span><input type="search" placeholder="Имя или номер брони" data-admin-search></label></div>
+            <div class="rental-journal"><div class="rental-table-head" aria-hidden="true"><span>Бронь / гость</span><span>Велосипед</span><span>Срок / оплата</span><span>Действия</span></div><ul data-admin-rows aria-label="Бронирования велосипедов"></ul><p class="rental-empty" data-admin-empty hidden>Таких броней нет. Попробуйте другой фильтр.</p></div>
+            <div class="rental-bottom"><span data-admin-counter role="status"></span></div>
+          </div>
+          </div>
+          <div class="rental-overlay" data-rental-overlay hidden>
+        <dialog class="rental-dialog" data-rental-dialog aria-labelledby="rental-dialog-title" aria-modal="false">
+          <header class="rental-dialog-header"><div><span class="cap-small-label" data-rental-dialog-kicker>Карточка бронирования</span><h4 id="rental-dialog-title" data-rental-dialog-title>Бронирование велосипеда</h4></div><button type="button" class="rental-close" data-rental-close aria-label="Закрыть бронирование"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button></header>
+          <div class="rental-record-strip" data-rental-record-strip hidden><span data-rental-record-id></span><span data-rental-record-source></span><span data-rental-record-status></span></div>
+          <form data-rental-form novalidate>
+            <div class="rental-form-grid">
+              <div class="rental-field"><label id="rental-guest-label" for="rental-guest">Имя гостя</label><input id="rental-guest" name="guest" required maxlength="60" autocomplete="off" placeholder="Например, Алексей"></div>
+              <div class="rental-field"><label id="rental-phone-label" for="rental-phone">Телефон</label><input id="rental-phone" name="phone" type="tel" required maxlength="24" autocomplete="off" placeholder="+7 900 000-00-00"></div>
+              <div class="rental-field rental-form-wide"><label id="rental-bike-label" for="rental-bike">Велосипед</label><select id="rental-bike" name="bike" required data-rental-select></select></div>
+              <div class="rental-field"><label id="rental-start-label" for="rental-start">Начало проката</label><input id="rental-start" name="start" type="time" required step="900" value="13:00" data-rental-time></div>
+              <div class="rental-field"><label id="rental-end-label" for="rental-end">Возврат до</label><input id="rental-end" name="end" type="time" required step="900" value="16:00" data-rental-time></div>
+              <div class="rental-field"><label id="rental-source-label" for="rental-source">Откуда заявка</label><select id="rental-source" name="source" data-rental-select><option value="website">Сайт</option><option value="telegram">Telegram</option><option value="desk">На месте</option></select></div>
+              <div class="rental-field"><label id="rental-payment-label" for="rental-payment"><span data-rental-payment-label>Предоплата, ₽</span></label><input id="rental-payment" name="payment" type="text" inputmode="numeric" value="0" required maxlength="6" autocomplete="off"></div>
+            </div>
+            <div class="rental-quote"><div><span data-rental-quote-label>Стоимость проката</span><strong data-rental-quote>—</strong></div><p data-rental-balance></p></div>
+            <p class="rental-form-error" data-rental-error role="alert" tabindex="-1" hidden></p>
+            <div class="rental-history" data-rental-history hidden><h5>История бронирования</h5><ol data-rental-history-list></ol></div>
+            <div class="rental-dialog-actions"><button type="button" class="rental-secondary" data-rental-close><svg class="control-icon ui-arrow ui-arrow--back" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"/></svg><span>К журналу</span></button><button type="submit" class="rental-primary" data-rental-submit><span>Подтвердить выдачу</span><span class="rental-button-icon" aria-hidden="true"><svg class="control-icon ui-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"/></svg></span></button></div>
+          </form>
+        </dialog>
+          </div>
+        </div>
+        </div>
+        <p class="sr-only" data-rental-announcement role="status" aria-live="polite"></p>
+      </article>

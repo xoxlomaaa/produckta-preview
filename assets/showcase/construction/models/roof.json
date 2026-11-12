@@ -1,0 +1,71 @@
+{
+  "systemId": "mineral-wool-pitched-roof",
+  "units": "metres",
+  "pitchDegrees": 35,
+  "layers": [
+    {
+      "id": "1",
+      "name": "Металлочерепица · матовый графит",
+      "objects": 70
+    },
+    {
+      "id": "2",
+      "name": "Обрешётка",
+      "objects": 72
+    },
+    {
+      "id": "3",
+      "name": "Контробрешётка · вентиляционный канал",
+      "objects": 16
+    },
+    {
+      "id": "4",
+      "name": "Диффузионная ветро-влагозащитная мембрана",
+      "objects": 5
+    },
+    {
+      "id": "5",
+      "name": "Минеральная вата между стропилами",
+      "objects": 26
+    },
+    {
+      "id": "6",
+      "name": "Деревянные стропила",
+      "objects": 15
+    },
+    {
+      "id": "7",
+      "name": "Перекрёстное утепление с обрешёткой",
+      "objects": 27
+    },
+    {
+      "id": "8",
+      "name": "Пароизоляция с тёплой стороны",
+      "objects": 7
+    },
+    {
+      "id": "9",
+      "name": "Сервисная обрешётка и внутренняя обшивка",
+      "objects": 9
+    }
+  ],
+  "illustrativeGeometry": {
+    "betweenRaftersMineralWoolMm": [
+      100,
+      50
+    ],
+    "crossInsulationMm": 50,
+    "crossTimberMm": [
+      50,
+      50
+    ],
+    "ventilationChannelMm": 50,
+    "serviceCavityMm": 50,
+    "liningMm": [
+      12.5,
+      12.5
+    ]
+  },
+  "modelBytes": 9675016,
+  "technicalStatus": "Illustrative model, not a project-specific construction design"
+}

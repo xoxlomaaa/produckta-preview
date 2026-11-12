@@ -1,0 +1,4 @@
+/* Override the pinned excerpt locally instead of editing compiled donor CSS. */
+a, button, a:hover, button:hover, a:focus-visible, button:focus-visible {
+  text-decoration: none !important;
+}

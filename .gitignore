@@ -1,0 +1,15 @@
+dist/
+node_modules/
+output/
+experiments/
+assets/source/
+assets/decor/
+assets/hero/
+PRODUCT.md
+.playwright-mcp/
+.env
+.env.*
+!.env.example
+*.log
+Thumbs.db
+.DS_Store

@@ -1,0 +1,58 @@
+/* Entrances only. Scroll controllers and interactive previews own their motion. */
+@layer components {
+  .hero h1 .hero-title-line { display: block; color: inherit; white-space: normal; }
+  .hero-art { transform-origin: 70% 35%; }
+  .hero-duck-scene { pointer-events: none; transform-origin: 71% 28%; }
+  @media (min-width: 48rem) {
+    .hero-skate-scene.hero-duck-scene { position: absolute; inset: 0 auto auto -.5rem; margin-inline: 0; }
+  }
+  @media (min-width: 64rem) {
+    .hero-skate-scene.hero-duck-scene { inset: 0 0 auto auto; }
+  }
+}
+
+@layer motion {
+  /* JS prepares entrance targets. Focus/pointer interaction settles the Hero. */
+  .page-motion-pending { opacity: 0; }
+  :root {
+    --page-motion-mobile: 1;
+    --page-motion-trigger-threshold: .08;
+    --page-motion-trigger-margin: 0px;
+    --page-motion-shift: 20px;
+    --page-motion-art-shift: 32px;
+    --page-motion-art-scale: 1;
+    --page-motion-art-delay: 0ms;
+    --page-motion-turn: 0deg;
+    --page-motion-stagger: 60ms;
+    --page-motion-scatter: 80ms;
+    --page-motion-duration: 650ms;
+    --page-motion-art-duration: 800ms;
+    --hero-motion-lift: 42px;
+    --hero-motion-copy-lift: 28px;
+    --hero-motion-duration: 1200ms;
+    --hero-duck-rock-angle: .8deg;
+    --hero-duck-rock-lift: .6px;
+  }
+  /* Mouse desktops keep their profile; short touch landscapes use compact motion. */
+  @media (min-width: 64rem), (min-width: 48rem) and (hover: hover), (min-width: 48rem) and (min-height: 34rem) {
+    :root {
+      --page-motion-mobile: 0;
+      --page-motion-trigger-threshold: .12;
+      --page-motion-trigger-margin: 0px 0px -10% 0px;
+      --page-motion-shift: 52px;
+      --page-motion-art-shift: 88px;
+      --page-motion-art-scale: .96;
+      --page-motion-art-delay: 100ms;
+      --page-motion-turn: 5deg;
+      --page-motion-stagger: 170ms;
+      --page-motion-scatter: 220ms;
+      --page-motion-duration: 1050ms;
+      --page-motion-art-duration: 1300ms;
+      --hero-motion-lift: 72px;
+      --hero-motion-copy-lift: 40px;
+      --hero-motion-duration: 1450ms;
+      --hero-duck-rock-angle: 1.1deg;
+      --hero-duck-rock-lift: 1px;
+    }
+  }
+}

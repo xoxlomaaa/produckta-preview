@@ -1,0 +1,29 @@
+@layer components {
+  .faq-panel { display: grid; gap: 2rem; }
+  .faq-intro { position: relative; isolation: isolate; min-inline-size: 0; }
+  .faq-intro::before { content: ''; position: absolute; z-index: -1; inset: 0; block-size: max(100%, 22rem); background: var(--teal); opacity: .05; mask-image: url('../assets/illustrations/industry-loop-mask.svg'), linear-gradient(transparent, #000 25%, #000 70%, transparent); mask-size: 36rem auto, 100% 100%; mask-position: 45% 62%, center; mask-repeat: no-repeat; mask-composite: intersect; pointer-events: none; }
+  .faq-intro h2 { padding-inline-end: 6rem; }
+  .faq-intro .section-description { max-inline-size: 29ch; text-wrap: pretty; }
+  .faq-duck { position: absolute; inset: 0 0 auto auto; inline-size: 5.4rem; transform: scaleX(-1); pointer-events: none; }
+  .faq-list { min-inline-size: 0; border-block-start: var(--border-width) solid var(--rule); }
+  .faq-item { border-block-end: var(--border-width) solid var(--rule); }
+  .faq-item > summary { display: flex; align-items: center; justify-content: space-between; gap: clamp(1rem, 1.5vw, 1.5rem); min-block-size: 5.5rem; padding-block: 1.5rem; color: var(--ink); cursor: pointer; list-style: none; font-size: clamp(1rem, 1.4vw, 1.25rem); font-weight: 650; line-height: 1.5; }
+  .faq-item > summary::-webkit-details-marker { display: none; }
+  .faq-item > summary::marker { content: ''; }
+  .faq-item > summary:focus-visible { outline: 2px solid var(--red-action); outline-offset: 3px; border-radius: .3rem; }
+  .faq-toggle { display: grid; place-items: center; flex: none; inline-size: var(--control-size); block-size: var(--control-size); border: var(--control-border) solid var(--slate); border-radius: 50%; background: var(--paper); color: var(--slate); transition: color var(--control-duration) var(--control-ease), background-color var(--control-duration) var(--control-ease), border-color var(--control-duration) var(--control-ease); }
+  .faq-arrow { transform: rotate(90deg); transition: transform var(--control-duration) var(--control-ease); }
+  .faq-item[open] .faq-arrow { transform: rotate(270deg); }
+  .faq-item > summary:focus-visible .faq-toggle { color: var(--paper); background: var(--red); border-color: var(--red); }
+  .faq-answer { padding-block-end: clamp(1.5rem, 3vw, 2rem); padding-inline-end: min(3.25rem, 8vw); }
+  .faq-answer p { max-inline-size: 58ch; font-size: 1rem; line-height: 1.75; text-wrap: pretty; }
+  @media (width >= 56rem) {
+    .faq-panel { grid-template-columns: minmax(0, .8fr) minmax(0, 1.3fr); gap: clamp(2rem, 4vw, 4rem); align-items: start; }
+    .faq-intro h2 { padding-inline-end: 0; }
+    .faq-duck { position: static; inline-size: 12rem; margin-block-start: 2.5rem; }
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .faq-item > summary:hover .faq-toggle { color: var(--paper); background: var(--red); border-color: var(--red); }
+    .faq-item > summary:hover .ui-arrow use { transform: translateX(var(--control-shift)); }
+  }
+}

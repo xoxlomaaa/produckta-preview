@@ -114,6 +114,9 @@ export function initHeroRender(wheel) {
 
   function warmSource() {
     if (preparing || !enabled()) return;
+    // A visitor can jump directly to the roof or a lower anchor. Do not fetch
+    // the preceding sequence behind them; a reverse approach wakes it on scroll.
+    if (hero.getBoundingClientRect().bottom <= 0) return;
     preparing = true;
     const currentSource = source;
     source.prepare().then(ready => {
@@ -265,7 +268,7 @@ export function initHeroRender(wheel) {
     hero.dataset.renderTarget = String(target);
     // Keep the real poster until the compressed sequence is ready. Scrolling
     // remains available; never start motion that will exhaust its network buffer.
-    if (!buffered) return;
+    if (!buffered) { warmSource(); return; }
     if (!primed) {
       const runway = [...new Set(Array.from({length:profile === 'mobile' ? 4 : 8}, (_, i) => frameUrls(clampFrame(target + i * direction))).flat())].filter(Boolean);
       pool.update(runway, new Set(runway), frameUrls(target).filter(Boolean));

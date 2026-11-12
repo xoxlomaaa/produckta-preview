@@ -3,6 +3,7 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {DRACOLoader} from 'three/addons/loaders/DRACOLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+import {downloadRoof} from '../roof-download.js';
 const LEVELS={'9':0,'8':1,'7':2,'6':3,'5':3,'4':4,'3':5,'2':6,'1':7};
 const NORMAL=new THREE.Vector3(0,Math.cos(35*Math.PI/180),Math.sin(35*Math.PI/180));
 // Anchors are on exposed material, stored in glTF Y-up coordinates.
@@ -38,23 +39,24 @@ export class SystemViewer extends EventTarget {
  }
  visible(o){while(o){if(!o.visible)return false;o=o.parent;}return true;}
  resize(){const {width,height}=this.host.getBoundingClientRect();if(!width||!height)return;this.size={width,height};const previous=this.camera.aspect;this.camera.aspect=width/height;this.camera.updateProjectionMatrix();this.renderer.setSize(width,height,false);if(this.ready&&Math.abs(Math.log(previous/this.camera.aspect))>.28)this.fit(false);this.dirty=true;}
- async load(url,onProgress,signal){
+ async load(url,onProgress,signal,expectedBytes=0,prefetchedBytes=null){
   this.draco=new DRACOLoader();this.draco.setDecoderPath('/showcase/vendor/three/addons/libs/draco/gltf/');this.draco.setWorkerLimit(2);
+  this.draco.preload();
   const loader=new GLTFLoader();loader.setDRACOLoader(this.draco);
-  const response=await fetch(url,{signal});if(!response.ok)throw new Error('Не удалось загрузить файл модели (HTTP '+response.status+').');
-  const total=Number(response.headers.get('content-length'))||7568748,reader=response.body.getReader(),chunks=[];let loaded=0;
-  while(true){const {done,value}=await reader.read();if(done)break;chunks.push(value);loaded+=value.length;onProgress(Math.min(.9,loaded/total*.9));}
+  const bytes=prefetchedBytes||await downloadRoof(url,expectedBytes,onProgress,signal);
   if(signal?.aborted)throw new DOMException('Отменено','AbortError');
-  const bytes=new Uint8Array(loaded);let offset=0;for(const c of chunks){bytes.set(c,offset);offset+=c.length;}onProgress(.92);
+  onProgress(.92);
   const gltf=await loader.parseAsync(bytes.buffer,'/showcase/construction/models/');
   if(signal?.aborted||this.disposed){gltf.scene.traverse(o=>{o.geometry?.dispose();});throw new DOMException('Отменено','AbortError');}
-  this.root=gltf.scene;this.scene.add(this.root);this.root.traverse(o=>{
+  this.preparing=true;this.root=gltf.scene;this.scene.add(this.root);this.root.traverse(o=>{
    if(o.userData.layerId&&o.name.startsWith('Layer_')){const id=String(o.userData.layerId);this.groups.set(id,o);this.bases.set(id,o.position.clone());}
    if(o.isMesh){o.castShadow=true;o.receiveShadow=true;for(const m of Array.isArray(o.material)?o.material:[o.material]){m.side=THREE.DoubleSide;m.envMapIntensity=.7;if(m.transparent){m.depthWrite=false;m.forceSinglePass=true;}if(!this.materials.has(m)){m.userData.originalEmissive=m.emissive?.clone();m.userData.originalEmissiveIntensity=m.emissiveIntensity;this.materials.add(m);}}}
   });
   if(this.groups.size!==9)throw new Error('В файле не найдены все 9 слоёв.');
 
-  this.root.updateMatrixWorld(true);this.ready=true;this.select(this.selected);this.fit(false);this.host.dataset.modelReady='true';onProgress(1);this.draco.dispose();this.dirty=true;
+  this.root.updateMatrixWorld(true);await this.renderer.compileAsync(this.scene,this.camera);
+  if(signal?.aborted||this.disposed)throw new DOMException('Отменено','AbortError');
+  this.preparing=false;this.ready=true;this.select(this.selected);this.fit(false);this.host.dataset.modelReady='true';onProgress(1);this.draco.dispose();this.dirty=true;
  }
  emitCamera(){if(this.ready)this.dispatchEvent(new CustomEvent('camera',{detail:this.getCamera()}));}
  getCamera(){return {position:this.camera.position.toArray(),target:this.controls.target.toArray(),aspect:this.camera.aspect};}
@@ -74,7 +76,7 @@ export class SystemViewer extends EventTarget {
  zoom(factor){if(!this.ready)return;const offset=this.camera.position.clone().sub(this.controls.target);const length=THREE.MathUtils.clamp(offset.length()*factor,this.controls.minDistance,this.controls.maxDistance);offset.setLength(length);this.move(this.controls.target.clone().add(offset),this.controls.target.clone());}
  snapshot(){if(!this.ready)return;this.selection.visible=false;this.floor.visible=false;this.contactShadow.visible=false;this.renderer.setClearAlpha(0);this.renderer.render(this.scene,this.camera);const data=this.renderer.domElement.toDataURL('image/png');this.floor.visible=!this.isolated;this.contactShadow.visible=!this.isolated;this.updateSelection();this.dirty=true;return data;}
  updatePin(){const group=this.groups.get(this.selected);if(!group)return;const anchor=group.userData.pinAnchor||PIN_ANCHORS[this.selected],point=group.localToWorld(new THREE.Vector3(...anchor));point.project(this.camera);this.pin.hidden=!this.ready||point.z<-1||point.z>1||Math.abs(point.x)>.95||Math.abs(point.y)>.95;if(!this.pin.hidden){this.pin.textContent=this.selected.padStart(2,'0');this.pin.style.transform=`translate(${(point.x+1)*this.size.width/2-14}px,${(1-point.y)*this.size.height/2-53}px)`;}}
- animate(){if(this.disposed)return;if(this.paused)return;this.frame=requestAnimationFrame(()=>this.animate());if(!this.ready){if(this.dirty){this.renderer.render(this.scene,this.camera);this.dirty=false;}return;}
+ animate(){if(this.disposed)return;if(this.paused)return;this.frame=requestAnimationFrame(()=>this.animate());if(!this.ready){if(this.dirty&&!this.preparing){this.renderer.render(this.scene,this.camera);this.dirty=false;}return;}
   if(this.explodeMotion){const t=this.explodeMotion,a=reduced()?1:Math.min(1,(performance.now()-t.start)/t.duration),e=1-Math.pow(1-a,3);this.explode=THREE.MathUtils.lerp(t.from,this.explodeTarget,e);this.applyExplode();if(a===1)this.explodeMotion=null;}
   if(this.transition){const t=this.transition,a=t.duration?Math.min(1,(performance.now()-t.start)/t.duration):1,e=a*a*(3-2*a);this.camera.position.lerpVectors(t.fromPosition,t.position,e);this.controls.target.lerpVectors(t.fromTarget,t.target,e);this.dirty=true;if(a===1){this.transition=null;this.emitCamera();}}
   const change=this.controls.update();if((this.dirty||change)&&this.host.clientWidth){this.renderer.render(this.scene,this.camera);this.updatePin();this.dirty=false;}

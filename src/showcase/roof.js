@@ -1,4 +1,6 @@
 import {layers} from './construction-data.js';
+import {roofAssets} from './roof-assets.js';
+import {downloadRoof} from './roof-download.js';
 
 export async function initRoof(root, parentSignal, scrollController) {
   if (root.dataset.initialized) return () => {};
@@ -86,7 +88,16 @@ export async function initRoof(root, parentSignal, scrollController) {
     status.textContent = 'Загружаем 3D-модель…';
     loadController = new AbortController();
     try {
-      const {SystemViewer} = await import('./construction/viewer.js');
+      const profile = matchMedia('(max-width:760px)').matches ? 'mobile' : 'desktop';
+      const asset = roofAssets[profile];
+      const progress = value => {
+        if (!destroyed) status.textContent = `Загружаем 3D-модель · ${Math.round(value * 100)}%`;
+      };
+      // Transfer the model while the module graph and renderer are being prepared.
+      const [{SystemViewer}, bytes] = await Promise.all([
+        import('./construction/viewer.js'),
+        downloadRoof(asset.url, asset.bytes, progress, loadController.signal),
+      ]);
       if (destroyed) return;
       viewer?.dispose();
       viewer = new SystemViewer(viewport);
@@ -99,9 +110,8 @@ export async function initRoof(root, parentSignal, scrollController) {
         loadButton.disabled = false;
         loadButton.textContent = 'Повторить загрузку';
       }, {signal:life.signal});
-      await viewer.load('/showcase/construction/models/roof.glb', (progress) => {
-        if (!destroyed) status.textContent = `Загружаем 3D-модель · ${Math.round(progress * 100)}%`;
-      }, loadController.signal);
+      root.dataset.modelProfile = profile;
+      await viewer.load(asset.url, progress, loadController.signal, asset.bytes, bytes);
       if (destroyed) return;
       viewer.select(selected);
       poster.hidden = true;
@@ -110,6 +120,7 @@ export async function initRoof(root, parentSignal, scrollController) {
       visibility();
     } catch (error) {
       if (destroyed || error.name === 'AbortError') return;
+      loadController.abort();
       viewer?.dispose();
       viewer = undefined;
       poster.hidden = false;

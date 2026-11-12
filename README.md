@@ -1,5 +1,7 @@
 # Produckta
 
+Крыша: производные GLB для desktop/mobile с прежней геометрией и интерактивом — [docs/ROOF-COLD-LOADING.md](docs/ROOF-COLD-LOADING.md). `node tools/test-roof-models.mjs` включён в CI; обычной сборке новые зависимости не нужны.
+
 Холодная загрузка чемодана: ранний сжатый буфер, облегчённые кадры и проверка обратного хода — [docs/LOCKER-COLD-LOADING.md](docs/LOCKER-COLD-LOADING.md). Дополнительных зависимостей для обычной сборки нет; `node tools/test-locker-frames.mjs` включён в CI.
 
 Публичный предпросмотр: **https://xoxlomaaa.github.io/produckta-preview/**. Это версия для обсуждения: сохранены noindex и явный режим формы без отправки данных.

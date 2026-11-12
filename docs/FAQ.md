@@ -37,4 +37,4 @@ Chrome: 1920×1080 и 390×844, порядок reviews → faq → contacts, в�
 `node output/implementation/check-faq-typography.cjs` → `output/qa/faq-typography/`: Chrome 1920/768/390, восемь вопросов, один открытый ответ, одинаковые стрелки 44 px с рамкой 1 px, переход Enter/касанием, красное наведение с белой стрелкой, reduced motion, отсутствие переполнения и ошибок JS. Снимки ПК/телефона просмотрены. Выполнены сборка и проверка палитры; полные бенчмарки не запускались.
 # Обновление 12.11: раскрытие ответов
 
-Плавный JS-аккордеон, native/no-JS fallback, reduced motion и точечные проверки описаны в [MOBILE-FAQ-CONTROLS.md](MOBILE-FAQ-CONTROLS.md). Владельцы — `src/js/faq.js` и `src/styles/faq.css`. Ниже сохранена история оформления раздела.
+Плавный JS-аккордеон, native/no-JS fallback, reduced motion и точечные проверки описаны в [MOBILE-FAQ-CONTROLS.md](MOBILE-FAQ-CONTROLS.md). Владельцы — `src/js/faq.js` и `src/styles/faq.css`. Предыдущие разделы сохраняют историю оформления.
